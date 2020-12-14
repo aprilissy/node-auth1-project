@@ -25,7 +25,7 @@ const config = {
 
   // to persist session to db so they don't die on server reloads
   store: new KnexSessionStore({
-    knex: require("../database/connection.js"), // configured instance of knex
+    knex: require("../data/db-config"), // configured instance of knex
     tablename: "sessions", // table that will store sessions inside the db, name it anything you want
     sidfieldname: "sid", // column that will hold the session id, name it anything you want
     createtable: true, // if the table does not exist, it will create it automatically
@@ -39,7 +39,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/users', usersRouter);
-server.use('/api/auth', authRouter);
+server.use('/api', authRouter);
 
 server.get('/', (req, res) => {
   res.json({ api: 'up' });

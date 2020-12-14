@@ -3,7 +3,7 @@ const Users = require('../users/users-model');
 const checkPayload = (req, res, next) => {
   // needs req.body to include username, password
   if (!req.body.username || !req.body.password) {
-    res.status(401).json('bad payload')
+    res.status(401).json('Bad payload! Send me what I want! I want it now!!!')
   } else {
     next()
   }
@@ -16,10 +16,10 @@ const checkUsernameUnique = async (req, res, next) => {
     if (!rows.length) {
       next()
     } else {
-      res.status(401).json('username taken')
+      res.status(401).json('Theif! That name is not for your use!')
     }
   } catch (err) {
-    res.status(500).json('something failed tragically')
+    res.status(500).json('Now I lay me down to sleep. ')
   }
 }
 
@@ -32,7 +32,7 @@ const checkUsernameExists = async (req, res, next) => {
       req.userData = rows[0]
       next()
     } else {
-      res.status(401).json('who is that exactly?')
+      res.status(401).json('You shall not pass!')
     }
   } catch (err) {
     res.status(500).json('something failed tragically')
@@ -43,7 +43,7 @@ const restricted = (req, res, next) => {
   if (req.session && req.session.user) {
     next()
   } else {
-    res.status(401).json('unauthorized')
+    res.status(401).json('You shall not pass!')
   }
 }
 
