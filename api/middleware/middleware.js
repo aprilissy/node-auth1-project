@@ -16,7 +16,7 @@ const checkUsernameUnique = async (req, res, next) => {
     if (!rows.length) {
       next()
     } else {
-      res.status(401).json('Theif! That name is not for your use!')
+      res.status(401).json('Theif! That name is not for you to use!')
     }
   } catch (err) {
     res.status(500).json('Now I lay me down to sleep. ')

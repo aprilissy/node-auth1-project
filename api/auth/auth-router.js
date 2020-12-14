@@ -20,8 +20,21 @@ router.post('/register', checkPayload,checkUsernameUnique,async (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
-
+router.post('/login', checkPayload, checkUsernameExists,(req, res) => {
+  try {
+    // compare raw password to hash saved password
+    const verify = bycrypt.compareSync(req.body.password, req.userData.password)
+    if(verify) {
+      // set-cookie header is set on res
+      // active session for user is saved
+      req.session.user = req.userData
+      res.json(`Great to see you again ${req.userData.username}`)
+    } else {
+      res.status(401).json('No! Try again. Better this time!')
+    }
+  } catch (error) {
+    res.status(500).json('Sleep little server. Sleep.')
+  }
 })
 
 router.get('/logout', (req, res) => {
