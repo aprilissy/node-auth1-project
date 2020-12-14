@@ -38,7 +38,17 @@ router.post('/login', checkPayload, checkUsernameExists,(req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.json('You can checkout anytime you like, but you can never leave')
+      } else {
+        res.json('go then. get out')
+      }
+    })
+  } else { 
+    res.json('buggy code. you were not here to begin with')
+  }
 })
 
 module.exports = router;
