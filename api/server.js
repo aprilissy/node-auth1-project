@@ -12,8 +12,8 @@ const authRouter = require('./auth/auth-router');
 const server = express();
 
 const config = {
-  name: "sessionId", // the default would be sid, but that would reveal our stack
-  secret: "keep it secret, keep it safe!", // to encrypt/decrypt the cookie
+  name: "paco", // the default would be sid, but that would reveal our stack
+  secret: "Paco keep it secret, keep it safe!", // to encrypt/decrypt the cookie
   cookie: {
     maxAge: 1000 * 60 * 60, // how long is the session valid for, in milliseconds
     secure: false, // used over https only, should be true in production
